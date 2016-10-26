@@ -7,6 +7,8 @@ var morgan = require('morgan');
 var cors = require('cors');
 var rp = require('request-promise');
 var router = require('./routes');
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
 
 var app = express();
 
@@ -19,6 +21,8 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static(path.join(__dirname, '../client')));
+
+app.use(expressJWT({ secret: 'this is the secret token!' }).unless({ path: ['/api/auth/signin', '/api/search', '/api/activity', '/api/auth/signup', '/api/activity/expedia'] }))
 
 // Handle known routes
 app.use('/api', router);
