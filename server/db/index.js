@@ -7,6 +7,7 @@ var SavedActivities = require('../models').SavedActivities(db);
 var PossibleExpedia = require('../models').PossibleExpedia(db);
 var SavedExpedia = require('../models/').SavedExpedia(db);
 var Trip = require('../models').Trip(db);
+var Users = require('../models').Users(db);
 
 // Assign table relationships
 PossibleActivities.belongsTo(Trip);
@@ -28,5 +29,6 @@ module.exports = {
   SavedActivities: SavedActivities,
   PossibleExpedia: PossibleExpedia,
   SavedExpedia: SavedExpedia,
-  Trip: Trip
+  Trip: Trip,
+  Users: Users
 };
