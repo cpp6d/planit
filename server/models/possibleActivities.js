@@ -8,7 +8,8 @@ module.exports = function(db) {
     image: { type: Sequelize.STRING },
     description: { type: Sequelize.STRING },
     address: { type: Sequelize.STRING },
-    uuid: { type: Sequelize.STRING }
+    uuid: { type: Sequelize.STRING },
+    categories: {type: Sequelize.ARRAY(Sequelize.STRING) }
   });
 
   return PossibleActivities;

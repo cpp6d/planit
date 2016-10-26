@@ -14,6 +14,7 @@
       'app.auth',
       'app.search',
       'app.activityList',
-      'app.itinerary'
+      'app.itinerary',
+      'ngMaterial'
     ]);
 })();
