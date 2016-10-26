@@ -20,7 +20,8 @@ function yelpSearch(locationSearch, tripId) {
           address: business.location.display_address,
           image: business.image_url,
           description: business.snippet_text,
-          tripId: tripId
+          tripId: tripId,
+          categories: business.categories
         });
       });
 
