@@ -1,5 +1,24 @@
-<div class="container">
+<div ng-model='ParentController' class="container">
   <h1>Your Trip</h1>
+
+  <h4>Check for Flights<h4>
+  <div ng-controller="ParentController" ng-cloak>
+  <div class="tableFoundation">
+      <div layout-gt-xs="row">
+        <div flex-gt-xs>
+          <h4>Arrival</h4>
+          <md-datepicker ng-model="arrivalDate" md-placeholder="Arrival date"></md-datepicker>
+        </div>
+
+        <div flex-gt-xs>
+          <h4>Departure</h4>
+          <md-datepicker ng-model="departureDate" md-placeholder="Departure date"></md-datepicker>
+        </div>  
+        <md-button class="md-raised">Check</md-button>
+    </div>
+  </div>
+  </div>
+
   <div ui-view="auth"></div>
   <div class="col-md-6" ui-view="activity"></div>
   <div class="col-md-6" ui-view="itinerary"></div>

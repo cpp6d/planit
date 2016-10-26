@@ -12,6 +12,8 @@
     $scope.uuid = '';
     $scope.selectedActivity = '';
     $scope.selectedExpediaActivity = '';
+    $scope.arrivalDate = new Date();
+    $scope.departureDate = new Date();
 
     /* *
     * ParentController
