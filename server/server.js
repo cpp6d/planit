@@ -22,8 +22,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static(path.join(__dirname, '../client')));
 
-// app.use(expressJWT({ secret: 'this is the secret token!' }).unless({ path: ['/api/auth/signin', '/api/search', '/api/activity', '/api/auth/signup', '/api/activity/expedia'] }))
-
 // Handle known routes
 app.use('/api', router);
 

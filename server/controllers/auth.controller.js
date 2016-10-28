@@ -2,6 +2,7 @@ var Trip = require('../db').Trip;
 var Users = require('../db').Users;
 var activityController = require('./activity.controller');
 var jwt = require('jsonwebtoken');
+var bcrypt = require('bcrypt')
 
 var authController = {};
 
@@ -32,18 +33,26 @@ authController.GETHASH = function(req, res) {
 };
 
 authController.SIGNUP = function (req, res) {
-  Users.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password
+  bcrypt.hash(req.body.password, 10, (err, hash) => {
+    if (err) {
+      res.err(err)
+    } else {
+      req.body.password = hash
+
+      Users.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+      })
+      .then(function(user) {
+        var token = jwt.sign({ email: req.body.email }, 'this is the secret token!');
+        res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id })
+      })
+      .catch(function(err) {
+        res.status(500).send(err);
+      });
+    }
   })
-  .then(function(user) {
-    var token = jwt.sign({ email: req.body.email }, 'this is the secret token!');
-    res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id })
-  })
-  .catch(function(err) {
-    res.status(500).send(err);
-  });
 };
 
 authController.SIGNIN = function (req, res) {
@@ -51,9 +60,16 @@ authController.SIGNIN = function (req, res) {
     "email": req.body.email
   })
   .then(function (user) {
-    // Decrypt password to make sure all checks out
-    var token = jwt.sign({ email: req.body.email }, 'this is the secret token!');
-    res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id })
+    bcrypt.compare(req.body.password, result.password, (err, response) => {
+      if (err) {
+        res.status(500).send(err)
+      } else if (response !== null) {
+        var token = jwt.sign({ email: req.body.email }, 'this is the secret token!');
+        res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id })
+      } else {
+        res.status(400).send('Invalid email or password')
+      }
+    })
   })
 }
 
