@@ -36,15 +36,14 @@
             templateUrl: './app/common/auth/auth.html',
             controller: 'AuthController as vm',
             parent: 'parent'
-          },
-          'payment': {
-            templateUrl: './app/common/auth/auth.html',
-            controller: 'PaymentController as vm',
-            parent: 'parent'
           }
         }
-      });
-
+      })
+      .state('payment', {
+        url: '/donate',
+        templateUrl: './app/common/payment/payment.html',
+        controller: 'PaymentController as vm'
+      })
     $urlRouterProvider.otherwise('explore');
   }
 })();

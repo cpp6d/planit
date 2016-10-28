@@ -1,5 +1,5 @@
-<div class="payment-frame">
-  <h1>We appreciate your donation! Your donation will help the development of Planit!</h1>
+<div class="payment-frame" ng-init="vm.paymentInit()" ng-controller="PaymentController">
+  <h1 align="center" style="text-shadow: 2px 2px 5px gray;">We appreciate your donation! Your donation will help the development of Planit!</h1>
   <form action="/checkout" method="post" id="cardForm" >
     <label class="hosted-fields--label" for="card-number">Card Number</label>
     <div id="card-number" class="hosted-field"></div>
@@ -14,6 +14,7 @@
     <div id="postal-code" class="hosted-field"></div>
 
     <div class="button-container">
-    <input type="submit" class="button button--small button--green" value="Purchase" id="submit"/>
+    <input style="top:0px;"type="submit" class="button button--small button--green" value="Donate!" id="submit"/>
     </div>
   </form>
+</div>

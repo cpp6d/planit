@@ -18,6 +18,7 @@
   "homepage": "https://github.com/djoj/planit#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "braintree": "^1.42.0",
     "cors": "^2.8.1",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
