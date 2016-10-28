@@ -1,0 +1,78 @@
+<md-dialog aria-label="signup">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>You must be signed in to save activites</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Sign Up">
+          <md-content class="md-padding">
+            <div class="signup" layout-padding layout-margin>
+              <h1 class="md-display-1">Sign up</h1>
+              <form name="signupForm">
+                <md-input-container class="md-block">
+                  <label>Name</label>
+                  <input type="text" class="signinInput" minlength="4" ng-model="signupName" aria-label="name" required>
+
+                  <div ng-messages="signupForm.name.$error" role="alert">
+                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                      This field must be longer than 3 characters.
+                    </div>
+                  </div>
+                </md-input-container>
+
+
+                <md-input-container class="md-block">
+                    <label>Email</label>
+                    <input required type="email" name="clientEmail" ng-model="signupEmail"
+                           minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" aria-label="email" />
+
+                    <div ng-messages="signupForm.email.$error" role="alert">
+                      <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                        Your email must be between 10 and 100 characters long and look like an e-mail address.
+                      </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                  <label>Password</label>
+                  <input type="password" class="signinInput" ng-model="signupPassword" ngMinlength=5 aria-label="password" required>
+
+                  <div ng-messages="signupForm.password.$error" role="alert">
+                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                      Your password must be greater than 6 characters long.
+                    </div>
+                  </div>
+                </md-input-container>
+
+                <md-button class="md-button md-raised theme" ng-click="signup(signupName, signupEmail, signupPassword)">Sign Up</md-button>
+              </form>
+            </div>
+          </md-content>
+        </md-tab>
+        <md-tab label="Sign In">
+          <md-content class="md-padding">
+            <div class="signup" layout-padding layout-margin>
+              <h1 class="md-display-1">Sign In</h1>
+              <form name="signinForm">
+                <md-input-container class="md-block" aria-label>
+                  <label>Email</label>
+                  <input required type="email" name="email" ng-model="email" aria-label="email"/>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                  <label>Password</label>
+                  <input type="password" class="signinInput" ng-model="password" ngMinlength=5 aria-label="password" required>
+                </md-input-container>
+
+                <md-button class="md-button md-raised theme" ng-click="signin(email, password)">Login</md-button>
+              </form>
+            </div>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-dialog-content>
+  </form>
+</md-dialog>

@@ -2,12 +2,13 @@
  'use strict';
 
  angular
-    .module('app.activityList')
+    .module('app.activityList', ['ngMaterial'])
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['$scope', '$state', 'activityService'];
+  ActivityController.$inject = ['$scope', '$state', 'activityService', '$mdDialog', '$http', '$window'];
 
-  function ActivityController($scope, $state, activityService) {
+  function ActivityController($scope, $state, activityService, $mdDialog, $http, $window) {
+
     var vm = this;
     vm.possibleActivities = [];
     vm.possibleExpedia = [];
@@ -55,9 +56,53 @@
         });
     }
 
+    $scope.signin = function (userEmail, userPassword) {
+      if (!userEmail || !userPassword) {
+        return
+      }
+
+      $http.post("/api/auth/signin", {email: userEmail, password: userPassword})
+        .then(function (res) {
+          $window.localStorage.token = res.data.token;
+          $window.localStorage.id = res.data.id;
+        })
+    }
+
+    $scope.signup = function (userName, userEmail, userPassword) {
+      if (!userName || !userEmail || !userPassword) {
+        return
+      }
+
+      $http.post("/api/auth/signup", {name: userName, email: userEmail, password: userPassword})
+        .then(function (res) {
+          $window.localStorage.token = res.data.token;
+          $window.localStorage.id = res.data.id;
+        })
+    }
+
+    $scope.showTabDialog = function() {
+      $mdDialog.show({
+        controller: ActivityController,
+        templateUrl: 'signup.html',
+        parent: angular.element(document.body),
+        clickOutsideToClose:true
+      })
+          .then(function(answer) {
+            $scope.status = 'You said the information was "' + answer + '".';
+          }, function() {
+            $scope.status = 'You cancelled the dialog.';
+          });
+    };
+
     function getSelectedActivity(activity) {
-      $scope.$parent.selectedActivity = activity;
-      vm.getActivities(vm.uuid);
+      // Check to see if local storage has token, if not--sign in modal
+      console.log("SUP")
+      if (!$window.localStorage.token) {
+        $scope.showTabDialog()
+      } else {
+        $scope.$parent.selectedActivity = activity;
+        vm.getActivities(vm.uuid);
+      }
     }
 
     function getExpedia(uuid) {
@@ -85,4 +130,4 @@
       vm.getExpedia(vm.uuid);
     }, 2000);
   }
-})();
+})()
