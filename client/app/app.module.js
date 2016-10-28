@@ -19,5 +19,6 @@
       'ngMaterial',
       'angular-jwt',
       'app.payment'
+      'app.flight'
     ]);
 })();
