@@ -47,27 +47,18 @@
     </div>
   </uib-tab>
 
-
-<!-- <uib-tab index="2" heading="Flight Info">
-  <div class="tableFoundation">
-      <div class="activityTable">
-        <table class="table table-striped table-hover" ng-controller='FlightController' >
-          <tbody>
-            <tr class="info" ng-repeat="price in totalPrice">
-              <div>{{totalPrice}}</div>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      </div>
-</uib-tab> -->
 <uib-tab index="2" heading="Flight Info">
   <div class="tableFoundation">
     <div class="activityTable">
     <table class="table table-striped table-hover">
       <tbody>
-        <tr class="info" ng-repeat="price in totalPrice">
-          <td>{{price.total}}</td>
+        <tr class="info" ng-repeat="flight in flightInfo">
+          <td>{{flight.airlineName}}</td>
+          <td>{{flight.arrivalCity}}<br>
+          {{flight.arrivalTime}}</td>
+          <td>{{flight.departureCity}}<br>
+          {{flight.departureTime}}</td>
+          <td>{{flight.total}}</td>
         </tr>
       </tbody>
     </table>

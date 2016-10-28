@@ -3,7 +3,7 @@ var flightController = {}
 
 flightController.POST = (req,res) => {
 
-	var url = "http://terminal2.expedia.com:80/x/mflights/search?departureDate=2016-12-25&returnDate=2016-12-30&departureAirport="+req.body.departureCity+"&arrivalAirport="+req.body.arrivalCity+"&maxOfferCount=10&apikey="+ process.env.expedia_api_key;
+	var url = "http://terminal2.expedia.com:80/x/mflights/search?departureDate=2016-12-25&returnDate=2016-12-30&departureAirport="+req.body.departureCity+"&arrivalAirport="+req.body.arrivalCity+"&maxOfferCount=20&apikey="+ process.env.expedia_api_key;
 	var options = {
 	    method: "GET",
 	    uri: url,

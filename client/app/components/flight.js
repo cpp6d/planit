@@ -18,11 +18,11 @@
     $scope.arrivalCity = '';
     $scope.departureCity = '';
     $scope.flightInfo = []
-    $scope.totalPrice =[{total:"123.92"},{total:"123.92"},{total:"123.92"}]
+    $scope.totalPrice =[]
 
     $scope.getFlight = function(arrivalCity,departureCity,arrivalDate,departureDate){
         FlightFactory.getFlight(arrivalCity,departureCity,arrivalDate,departureDate).then(data=>{
-                        // console.log('data.data', data.data)
+                        console.log('data.data', data.data.legs)
                         data.data.legs.forEach((flight,index)=>{
                             $scope.flightInfo.push({
                                 airlineName : flight.segments[0].airlineName,
@@ -32,7 +32,6 @@
                                 departureTime : flight.segments[0].departureTime,
                                 total: data.data.offers[index].totalFare
                             })
-                            console.log("scope.flight", $scope.flightInfo)    
                         })
 
                 })
