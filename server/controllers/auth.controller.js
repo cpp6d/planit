@@ -45,8 +45,9 @@ authController.SIGNUP = function (req, res) {
         password: req.body.password
       })
       .then(function(user) {
-        var token = jwt.sign({ email: req.body.email }, 'this is the secret token!');
-        res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id, name: user.name })
+        var token = jwt.sign({ email: req.body.email, expiresIn: Math.floor(Date.now() / 1000) + (60 * 60) }, 'this is the secret token!');
+
+        res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id, name: user.name  })
       })
       .catch(function(err) {
         res.status(500).send(err);
@@ -60,12 +61,13 @@ authController.SIGNIN = function (req, res) {
     "email": req.body.email
   })
   .then(function (user) {
-    bcrypt.compare(req.body.password, result.password, (err, response) => {
+    bcrypt.compare(req.body.password, user.password, (err, response) => {
       if (err) {
         res.status(500).send(err)
       } else if (response !== null) {
-        var token = jwt.sign({ email: req.body.email }, 'this is the secret token!');
-        res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id, name: user.name })
+        var token = jwt.sign({ email: req.body.email, expiresIn: Math.floor(Date.now() / 1000) + (60 * 60) }, 'this is the secret token!');
+
+        res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id, name: user.name  })
       } else {
         res.status(400).send('Invalid email or password')
       }
