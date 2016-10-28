@@ -62,6 +62,7 @@
 
       $http.post("/api/auth/signin", {email: userEmail, password: userPassword})
         .then(function (res) {
+          console.log('this: ', res);
           $window.localStorage.token = res.data.token;
           $window.localStorage.id = res.data.id;
           $window.localStorage.name = res.data.name;
