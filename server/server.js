@@ -11,7 +11,8 @@ var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
 var app = express();
-
+var http = require('http').Server(app)
+var io = require('socket.io')(http)
 var db = require('./db').db;
 
 var port = process.env.PORT || 8000;
@@ -22,6 +23,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static(path.join(__dirname, '../client')));
 
+//socketio server calls
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+  socket.on('chat message', function(msg){
+    io.emit('chat message server', msg)
+    console.log('chat message', msg);
+  })
+});
+
 // Handle known routes
 app.use('/api', router);
 
@@ -30,6 +43,10 @@ app.use(function(req, res) {
   res.send('Error 404: Page not found');
 });
 
-app.listen(port, function() {
-  console.log(`server listening on port ${port}`);
-});
+// app.listen(port, function() {
+//   console.log(`server listening on port ${port}`);
+// });
+
+http.listen(port, function(){
+  console.log('Server started: http://localhost:' + port + '/')
+})

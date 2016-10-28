@@ -14,6 +14,7 @@
       'app.auth',
       'app.search',
       'app.activityList',
+      'app.chats',
       'app.itinerary',
       'ngMaterial',
       'angular-jwt',
