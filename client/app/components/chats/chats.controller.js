@@ -4,7 +4,7 @@ angular.module('app.chats', [])
   $scope.messages = []
 
   $scope.sendMessage = function (){
-    socket.emit('chat message', {message: $scope.value})
+    socket.emit('chat message', {name: res.data.name, message: $scope.value})
     console.log('scopevalue: ', $scope.value);
   }
   socket.on('chat message server', function(msg) {
@@ -14,6 +14,4 @@ angular.module('app.chats', [])
       console.log($scope.messages);
     })
   })
-
-
 })

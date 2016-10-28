@@ -37,17 +37,17 @@
             controller: 'AuthController as vm',
             parent: 'parent'
           },
-          'chats': {
-            templateUrl: './app/components/chats/chats.html',
-            controller: 'ChatsController as vm',
-            parent: 'parent'
-          }
         }
       })
       .state('payment', {
         url: '/donate',
         templateUrl: './app/common/payment/payment.html',
         controller: 'PaymentController as vm'
+      })
+      .state('chats', {
+        url:'/chats',
+        templateUrl: './app/components/chats/chats.html',
+        controller: 'ChatsController as vm'
       })
     $urlRouterProvider.otherwise('explore');
   }

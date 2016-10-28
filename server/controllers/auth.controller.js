@@ -2,7 +2,7 @@ var Trip = require('../db').Trip;
 var Users = require('../db').Users;
 var activityController = require('./activity.controller');
 var jwt = require('jsonwebtoken');
-var bcrypt = require('bcrypt')
+var bcrypt = require('bcryptjs')
 
 var authController = {};
 
