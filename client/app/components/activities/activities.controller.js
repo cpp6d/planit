@@ -65,6 +65,7 @@
         .then(function (res) {
           $window.localStorage.token = res.data.token;
           $window.localStorage.id = res.data.id;
+          $window.localStorage.name = res.data.name;
         })
     }
 
@@ -77,6 +78,7 @@
         .then(function (res) {
           $window.localStorage.token = res.data.token;
           $window.localStorage.id = res.data.id;
+          $window.localStorage.name = res.data.name;
         })
     }
 
