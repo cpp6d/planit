@@ -2,13 +2,12 @@
  'use strict';
 
  angular
-    .module('app.activityList', ['ngMaterial'])
+    .module('app.activityList', ['ngMaterial', 'angular-jwt'])
     .controller('ActivityController', ActivityController);
 
-  ActivityController.$inject = ['$scope', '$state', 'activityService', '$mdDialog', '$http', '$window'];
+  ActivityController.$inject = ['$scope', '$state', 'activityService', '$mdDialog', '$http', '$window', 'jwtHelper'];
 
-  function ActivityController($scope, $state, activityService, $mdDialog, $http, $window) {
-
+  function ActivityController($scope, $state, activityService, $mdDialog, $http, $window, jwtHelper) {
     var vm = this;
     vm.possibleActivities = [];
     vm.possibleExpedia = [];
@@ -96,12 +95,24 @@
 
     function getSelectedActivity(activity) {
       // Check to see if local storage has token, if not--sign in modal
-      console.log("SUP")
+
       if (!$window.localStorage.token) {
         $scope.showTabDialog()
       } else {
-        $scope.$parent.selectedActivity = activity;
-        vm.getActivities(vm.uuid);
+        try {
+          var token = $window.localStorage.token;
+          var decoded = jwtHelper.decodeToken(token);
+          console.log("DECODED", decoded)
+          var expired = jwtHelper.isTokenExpired(token);
+          console.log("EXPIRED", expired)
+        } catch(err) {
+          console.log('err', err)
+        }
+
+        if (decoded) {
+          $scope.$parent.selectedActivity = activity;
+          vm.getActivities(vm.uuid);
+        }
       }
     }
 

@@ -15,6 +15,7 @@
       'app.search',
       'app.activityList',
       'app.itinerary',
-      'ngMaterial'
+      'ngMaterial',
+      'angular-jwt'
     ]);
 })();
