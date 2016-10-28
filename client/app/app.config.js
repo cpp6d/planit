@@ -36,6 +36,11 @@
             templateUrl: './app/common/auth/auth.html',
             controller: 'AuthController as vm',
             parent: 'parent'
+          },
+          'payment': {
+            templateUrl: './app/common/auth/auth.html',
+            controller: 'PaymentController as vm',
+            parent: 'parent'
           }
         }
       });
