@@ -16,6 +16,7 @@
       'app.activityList',
       'app.itinerary',
       'ngMaterial',
-      'angular-jwt'
+      'angular-jwt',
+      'app.payment'
     ]);
 })();

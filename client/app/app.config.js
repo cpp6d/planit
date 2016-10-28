@@ -38,8 +38,12 @@
             parent: 'parent'
           }
         }
-      });
-
+      })
+      .state('payment', {
+        url: '/donate',
+        templateUrl: './app/common/payment/payment.html',
+        controller: 'PaymentController as vm'
+      })
     $urlRouterProvider.otherwise('explore');
   }
 })();
