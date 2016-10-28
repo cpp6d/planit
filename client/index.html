@@ -8,10 +8,12 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://bootswatch.com/yeti/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/braintree.css">
     <link rel="stylesheet" href="./assets/styles.css">
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- Angular CDNs -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -28,6 +30,10 @@
     <!-- angular-jwt -->
     <script src="bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
 
+    <!-- Braintree Client Component -->
+    <script src="https://js.braintreegateway.com/web/3.5.0/js/client.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.5.0/js/hosted-fields.min.js"></script>
+
     <!-- App -->
     <script src="./app/app.module.js"></script>
     <script src="./app/app.config.js"></script>
@@ -40,6 +46,11 @@
     <script src="./app/common/auth/auth.module.js"></script>
     <script src="./app/common/auth/auth.controller.js"></script>
     <script src="./app/common/auth/auth.service.js"></script>
+
+    <!-- Payment -->
+    <script src="./app/common/payment/payment.module.js"></script>
+    <script src="./app/common/payment/payment.controller.js"></script>
+    <script src="./app/common/payment/payment.service.js"></script>
 
     <!-- Search -->
     <script src="./app/common/search/search.module.js"></script>
@@ -56,6 +67,8 @@
     <script src="./app/components/itinerary/itinerary.module.js"></script>
     <script src="./app/components/itinerary/itinerary.controller.js"></script>
     <script src="./app/components/itinerary/itinerary.service.js"></script>
+
+
 
   </head>
   <body>
@@ -85,6 +98,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </nav>
 
@@ -94,6 +108,7 @@
     <!-- Footer -->
     <div class="footer">
       <small class="footerContent">PlanIt: a travel helper application. <br>
+      <a ui-sref="payment">Donate to Planit</a> <br>
       Created By: <br>
       <small class="githubLinks"><a href="https://github.com/oliv3rwang"> Oliver Wang </a></small>|
       <small class="githubLinks"><a href="https://github.com/dfle"> Dianne Le </a></small>|
