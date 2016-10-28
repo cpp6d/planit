@@ -46,7 +46,7 @@ authController.SIGNUP = function (req, res) {
       })
       .then(function(user) {
         var token = jwt.sign({ email: req.body.email }, 'this is the secret token!');
-        res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id })
+        res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id, name: user.name })
       })
       .catch(function(err) {
         res.status(500).send(err);
@@ -65,7 +65,7 @@ authController.SIGNIN = function (req, res) {
         res.status(500).send(err)
       } else if (response !== null) {
         var token = jwt.sign({ email: req.body.email }, 'this is the secret token!');
-        res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id })
+        res.status(200).header('Auth', token).header('currentUser', user.id).send({ token:token, user: user.id, name: user.name })
       } else {
         res.status(400).send('Invalid email or password')
       }
