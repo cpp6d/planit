@@ -5,9 +5,9 @@
     .module('app.payment')
     .factory('paymentService', paymentService);
 
-  paymentService.$inject = ['$http', '$location'];
+  paymentService.$inject = ['$http', '$location', '$timeout'];
 
-  function paymentService($http, $location) {
+  function paymentService($http, $location, $timeout) {
 
     var service = {
       paymentInit : paymentInit
@@ -86,7 +86,9 @@
           })
           .then(function (response) {
             $location.path('/explore')
-
+            $timeout(function(){
+              alert("Thank you for the $" + amount + " donation!");
+            }, 1000)
           })
           .catch(function (error) {
             console.log(error);
