@@ -18,7 +18,8 @@
       'app.itinerary',
       'ngMaterial',
       'angular-jwt',
-      'app.payment'
-      'app.flight'
+      'app.payment',
+      'app.flight',
+      'ngRoute'
     ]);
 })();

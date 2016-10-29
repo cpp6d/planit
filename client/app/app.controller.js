@@ -5,14 +5,15 @@
     .module('app')
     .controller('ParentController', ParentController);
 
-  ParentController.$inject = ['$scope', '$state'];
+  ParentController.$inject = ['$scope', '$state','$location'];
 
-  function ParentController($scope, $state) {
+  function ParentController($scope, $state, $location) {
+    const id = $location.search();
     var parent = this;
-    $scope.uuid = '';
+    $scope.uuid = id.uuid;
     $scope.selectedActivity = '';
     $scope.selectedExpediaActivity = '';
- 
+
     // * ParentController
     // *   - $scope.uuid is set by AuthController
     // *   - $scope.selectedActivity is set by ActivityController
